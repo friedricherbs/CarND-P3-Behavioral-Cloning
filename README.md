@@ -67,12 +67,17 @@ The dataset contains 8036 image triplets of size (320x160) with a center camera 
 ## Data Preprocessing
 The first track mostly contains left curves, so that the training data will be biased towards negative steering angles. Besides that, the zero steering angle when just driving straight is overrepresented. Due to that, I decided to remove a big part of this overrepresented data. For recovery I tried both to collect manual recovery scenes and using the left and right images for recovery. In the end, the approach using left and right camera images performed better, otherwise the training process would need multiple training and data collection iterations.
 For the left and right camera images the groundtruth steering angle needs to be adapted to teach to model always driving back to the center of the track, see these figures:
-![png](foo.png)
+
+![png](foo.png "Left/center/right images")
+
 In order to remove the bias towards negative steering angles the input dataset has been mirrored along the center vertical image axis. 
 The following figure shows the final distribution of the training dataset:
-![png](data_histogram.png)
+
+![png](data_histogram.png "Training steering angle histogram")
+
 In order to make the driving smoother, I decided to randomly shift the input images horizontally. This horizontal shift also requires an adaption of the steering angle pointing back to the center of the track. The idea of shifting is again to have a restoring force back to the center even before it touches the border markings:
-![png](shifted_images.png)
+
+![png](shifted_images.png "Shifting training images for data augmentation")
 
 ## Training Approach
 For training, the mean squared prediction error was minimized using Adam's optimizer which is a good choice at the moment (see <http://sebastianruder.com/optimizing-gradient-descent/> for a comparison). Validation error was monitored to prevent overfitting and as a guide to select the right model for testing on the track. In order to do early stopping, a larger patience value should be used because the validation error sometimes is not decreasing monotonously.
