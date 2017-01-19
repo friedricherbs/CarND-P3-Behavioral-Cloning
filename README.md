@@ -71,7 +71,8 @@ For the left and right camera images the groundtruth steering angle needs to be 
 In order to remove the bias towards negative steering angles the input dataset has been mirrored along the center vertical image axis. 
 The following figure shows the final distribution of the training dataset:
 ![png](data_histogram.png)
-In order to make the driving smoother, I decided to randomly shift the input images horizontally. This horizontal shift also requires an adaption of the steering angle pointing back to the center of the track. The idea of shifting is to have a restoring force back to the center even before it touches the border markings. 
+In order to make the driving smoother, I decided to randomly shift the input images horizontally. This horizontal shift also requires an adaption of the steering angle pointing back to the center of the track. The idea of shifting is again to have a restoring force back to the center even before it touches the border markings:
+![png](shifted_images.png)
 
 ## Training Approach
 For training, the mean squared prediction error was minimized using Adam's optimizer which is a good choice at the moment (see <http://sebastianruder.com/optimizing-gradient-descent/> for a comparison). Validation error was monitored to prevent overfitting and as a guide to select the right model for testing on the track. In order to do early stopping, a larger patience value should be used because the validation error sometimes is not decreasing monotonously.
