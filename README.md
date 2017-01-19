@@ -3,7 +3,7 @@ This project presents an end-to-end deep learning approach to predict the steeri
 A CNN (Convolutional Neural Network) was implemented and trained using Keras and Tensorflow.
 This project was developed and submitted as part of Udacity Self Driving Car Nanodegree. 
 
-# Usage
+## Usage
 python drive.py model.json will start the server, then select autonomous mode
 
 ## Network Architecture
