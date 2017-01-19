@@ -60,8 +60,13 @@ Besides that I have tried other network architectures like the Comma model
 <https://github.com/commaai/research/blob/master/train_steering_model.py> or an VGG-like network network topology
 <https://keras.io/getting-started/sequential-model-guide/> but they yielded inferior results.
 
+## Data Preprocessing
+For training the official Udacity dataset <https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip> was used. It contains 8036 image triplets consisting of a center image, a left image and a right image.
+I also used a bigger own dataset with about 80k image triplets but it did not result in a clear improvement and just prolonged the training, so I decided to focus on the Udacity dataset.
+The left and right images were used for recovery training to learn what to do if the car gets off to the side of the road.
+The steering angle for the left and right views was modified so that there is always a restoring force back to the center of the road, see this figure for an example:
+![png](foo.png)
+
 ## Training Approach
 
 ## Data
-
-## Data Preprocessing
